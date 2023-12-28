@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* background-color: black; */
+        }
+        body{
+            background-color: black;
+        }
+        .wrapper {
+            border-radius: 8px;
+            background-color: #434343;
+            border: 5px solid 6f6f72;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            -webkit-box-shadow: 0px 0px 33px 2px rgba(255,255,255,1);
+            -moz-box-shadow: 0px 0px 33px 2px rgba(255,255,255,1);
+            box-shadow: 0px 0px 33px 2px rgba(255,255,255,1);
+
+        }
+
+        .result-area {
+            height: 100px;
+            width: auto;
+            border: 1px solid rgb(55, 56, 58);
+            border-bottom: none;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            background-color:rgb(180, 200, 182);
+        }
+
+        .all-buttons {
+            height: 200px;
+            width: 400px;
+            background-color: #434343;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px;
+        }
+
+        .all-btn-l {
+            display: flex;
+            flex-direction: row;
+            /* flex-wrap: wrap; */
+        }
+
+        .btn {
+            /* border-radius: 4px; */
+            font-weight: bolder;
+            height: auto;
+            width: auto;
+            background-image: linear-gradient(to bottom right, gray, whitesmoke);
+            background-color: #e3e4e4;
+            color: black;
+            margin: 4px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* padding-left: 20px;
+            padding-right:20px; */
+            width: 48px;
+            border-radius: 4px;
+            /* font-size:medium; */
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .result-area {
+            display: flex;
+            align-items: end;
+            justify-content: center;
+        }
+
+        .res {
+            height: 40%;
+            width: 100%;
+            margin: 2px;
+            background-color: rgb(180, 200, 182);
+            display: flex;
+            align-items: end;
+            justify-content: end;
+        }
+
+        #final-res {
+            width: auto;
+            border: none;
+            background-color: transparent;
+            height: auto;
+            text-align: end;
+            margin: 4px;
+            font-size: large;
+        }
+        .btn{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="main-wrapper">
+            <div class="result-area">
+                <div class="res">
+                    <input type="text" name="" id="final-res" readonly>
+                </div>
+            </div>
+            <div class="all-buttons">
+                <div class="all-btn-l" style=" width: auto;height: 30px;">
+                    <button class="btn" id="ac" style="background-image: linear-gradient(to bottom right, green, rgb(146, 146, 146));border: none;"
+                        onclick="document.getElementById('final-res').value=''">AC</button>
+                    <button class="btn" id="ce" style="background-image: linear-gradient(to bottom right, green, rgb(146, 146, 146));border: none;"
+                        onclick="document.getElementById('final-res').value=''">CE</button>
+                    <button class="btn" id="x!" style="border: none;" onclick="pick('!')">x!</button>
+                    <button class="btn" id="brO" style="border: none;" onclick="pick('(')">(</button>
+                    <button class="btn" id="brC" style="border: none;" onclick='pick(")")'>)</button>
+                    <button class="btn" id="%" style="border: none;" onclick="pick('%')">%</button>
+                    <button class="btn" id="ac-2" style="border: none;"
+                        onclick="document.getElementById('final-res').value=''">AC</button>
+                </div>
+                <div class="all-btn-l" style=" width: auto;height: 30px;">
+                    <button class="btn" id="inv" style="border: none;">Inv</button>
+                    <button class="btn" id="sin" style="border: none;" onclick="trigo('sin')">sin</button>
+                    <button class="btn" id="ln" style="border: none;">ln</button>
+                    <button class="btn" id="7" style="border: none;" onclick="pick(7)">7</button>
+                    <button class="btn" id="8" style="border: none;" onclick="pick(8)">8</button>
+                    <button class="btn" id="9" style="border: none;" onclick="pick(9)">9</button>
+                    <button class="btn" id="/" style="border: none;" onclick="pick('/')">/</button>
+                </div>
+                <div class="all-btn-l" style=" width: auto;height: 30px;">
+                    <button class="btn" id="pi" style="border: none;" onclick="pick('pi')">PI</button>
+                    <button class="btn" id="cos" style="border: none;" onclick="trigo('cos')">cos</button>
+                    <button class="btn" id="log" style="border: none;" onclick="pick('log')">log</button>
+                    <button class="btn" id="4" style="border: none;" onclick="pick(4)">4</button>
+                    <button class="btn" id="5" style="border: none;" onclick="pick(5)">5</button>
+                    <button class="btn" id="6" style="border: none;" onclick="pick(6)">6</button>
+                    <button class="btn" id="*" style="border: none;" onclick="pick('*')">*</button>
+                </div>
+                <div class="all-btn-l" style=" width: auto;height: 30px;">
+                    <button class="btn" id="e" style="border: none;" onclick="pick('e')">e</button>
+                    <button class="btn" id="tan" style="border: none;" onclick="trigo('tan')">tan</button>
+                    <button class="btn" id="root" style="border: none;" onclick="pick('root')">root</button>
+                    <button class="btn" id="1" style="border: none;" onclick="pick(1)">1</button>
+                    <button class="btn" id="2" style="border: none;" onclick="pick(2)">2</button>
+                    <button class="btn" id="3" style="border: none;" onclick="pick(3)">3</button>
+                    <button class="btn" id="-" style="border: none;" onclick="pick('-')">-</button>
+                </div>
+                <div class="all-btn-l" style=" width: auto;height: 30px;">
+                    <button class="btn" id="ans" style="border: none;">Ans</button>
+                    <button class="btn" id="exp" style="border: none;">exp</button>
+                    <button class="btn" id="x**y" style="border: none;" onclick="pick('**')">x**y</button>
+                    <button class="btn" id="0" style="border: none;" onclick="pick(0)">0</button>
+                    <button class="btn" id="." style="border: none;" onclick="pick('.')">.</button>
+                    <button class="btn" id="=" style="background-image: linear-gradient(to bottom right, blue, rgb(108, 108, 108));border: none;" onclick="solve()">=</button>
+                    <button class="btn" id="+" style="border: none;" onclick="pick('+')">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function solve() {
+            console.log('so');
+            var eq = document.getElementById('final-res').value;
+            console.log(eq);
+            var res = eval(eq);
+            console.log(res);
+            document.getElementById('final-res').value = res;
+        }
+        function trigo(val){
+            
+            if(val=='sin'){
+                n=document.getElementById('final-res').value;
+                let x = Math.sin(n * Math.PI / 180);
+                document.getElementById('final-res').value= x.toFixed(2);
+                return  
+            }
+            if(val == 'cos'){
+                n=document.getElementById('final-res').value;
+                let x = Math.cos(n * Math.PI / 180);
+                document.getElementById('final-res').value= x.toFixed(2);  
+            }
+            if(val == 'tan'){
+                n=document.getElementById('final-res').value;
+                let x = Math.tan(n * Math.PI / 180);
+                document.getElementById('final-res').value= x.toFixed(2);  
+            }
+
+        }
+        function pick(val) {
+            
+            if(val== 'log'){
+                console.log('inlog')
+                n=document.getElementById('final-res').value;
+                console.log('nhere '+n);
+                let x = Math.log(n);
+                document.getElementById('final-res').value= x;
+                return;
+            }
+            if(val == 'e'){
+                n= 2.71828182846;
+                v=document.getElementById('final-res').value;
+                if(v==''){
+                    document.getElementById('final-res').value=n;
+                    return
+                }
+                document.getElementById('final-res').value *= n;
+                return
+            }
+            if(val == 'root'){
+                n=document.getElementById('final-res').value;
+                document.getElementById('final-res').value= Math.sqrt(n);
+                return
+            }
+            if(val == 'pi'){
+                document.getElementById('final-res').value= 3.14;
+                return
+            }
+            if(val == '%'){
+                console.log('in')
+                n=document.getElementById('final-res').value;
+                document.getElementById('final-res').value= n/100;
+                return;
+            }
+            if (val == '!') {
+                n=document.getElementById('final-res').value;
+                console.log('here is '+val);
+                fact = 1;
+                for (i = 1; i <= n; i++) {
+                    console.log('in loop');
+                    fact = fact * i;
+                }
+                document.getElementById('final-res').value = fact;
+            } else {
+                console.log("in" + val);
+                document.getElementById('final-res').value += val;
+            }
+        } 
+    </script>
+</body>
+
+</html>
